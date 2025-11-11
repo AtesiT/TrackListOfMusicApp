@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  TrackListOfMusicApp
-//
-//  Created by Yarutov on 11.11.2025.
-//
-
 import UIKit
 
 @main

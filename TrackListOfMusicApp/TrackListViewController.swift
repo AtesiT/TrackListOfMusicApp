@@ -1,24 +1,27 @@
 import UIKit
 
 final class TrackListViewController: UITableViewController {
-    private let trackList = Track.getTrackList()
+    private var trackList = Track.getTrackList()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 50
+        navigationItem.leftBarButtonItem = editButtonItem
     }
 
     // MARK: - Navigation
  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+//        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        let theVC = segue.destination as? TrackDetailsViewController
+        theVC?.track = sender as? Track
     }
 }
 
 // MARK: - UITableViewDataSource
 extension TrackListViewController {
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return trackList.count
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        trackList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,5 +35,23 @@ extension TrackListViewController {
         cell.contentConfiguration = content
         return cell
         
+    }
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let currentTrack = trackList.remove(at: sourceIndexPath.row)
+        trackList.insert(currentTrack, at: destinationIndexPath.row)
+    }
+}
+
+// MARK: - Update ItemBar
+extension TrackListViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let track = trackList[indexPath.row]
+        performSegue(withIdentifier: "showTrackDetails", sender: track)
+    }
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        false
     }
 }

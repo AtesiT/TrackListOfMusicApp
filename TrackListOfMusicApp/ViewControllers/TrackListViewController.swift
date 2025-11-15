@@ -5,10 +5,16 @@ final class TrackListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // We create the measures for cell here
+        tableView.rowHeight = 100
         
     }
-
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = tableView.indexPathForSelectedRow else {return}
+        let viewController = segue.destination as? TrackDetailsViewController
+        viewController?.track = trackList[indexPath.row]
+    }
+    
 }
 
 extension TrackListViewController {
@@ -19,8 +25,12 @@ extension TrackListViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath)
         let track = trackList[indexPath.row]
         var content = cell.defaultContentConfiguration()
+        
         content.text = track.name
         content.secondaryText = track.artist
+        content.image = UIImage(named: track.image)
+        content.imageProperties.cornerRadius = tableView.rowHeight / 2
+        
         cell.contentConfiguration = content
         return cell
     }

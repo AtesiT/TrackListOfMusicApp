@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Track List Controller-->
         <scene sceneID="yek-5C-Eds">
             <objects>
                 <tableViewController id="GUa-BS-zsH" customClass="TrackListViewController" customModule="TrackListOfMusicApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -42,7 +42,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="dbe-Xo-FQo" kind="show" id="2y7-zr-CdI"/>
+                                    <segue destination="dbe-Xo-FQo" kind="show" id="th6-GU-orz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -51,11 +51,11 @@
                             <outlet property="delegate" destination="GUa-BS-zsH" id="YWN-WN-M4o"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="fZG-UN-ynV"/>
+                    <navigationItem key="navigationItem" title="Track List Controller" id="fZG-UN-ynV"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UC0-XH-Ggs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="516" y="136"/>
+            <point key="canvasLocation" x="394" y="135"/>
         </scene>
         <!--Track Details-->
         <scene sceneID="Scr-S1-KHW">
@@ -64,14 +64,42 @@
                     <view key="view" contentMode="scaleToFill" id="2b8-7n-7To">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="n2K-dk-VEU">
+                                <rect key="frame" x="40" y="174" width="240" height="168.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m0N-x2-4b2">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWq-AA-jYi">
+                                        <rect key="frame" x="99.5" y="148" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="168.5" id="30a-UA-BWu"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="2IE-4C-yuj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="n2K-dk-VEU" firstAttribute="leading" secondItem="2IE-4C-yuj" secondAttribute="leading" constant="40" id="1Sq-Kz-mAX"/>
+                            <constraint firstItem="2IE-4C-yuj" firstAttribute="trailing" secondItem="n2K-dk-VEU" secondAttribute="trailing" constant="40" id="6Vj-37-hav"/>
+                            <constraint firstItem="n2K-dk-VEU" firstAttribute="top" secondItem="2IE-4C-yuj" secondAttribute="top" constant="100" id="Whx-js-OC9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Track Details" id="ffZ-3z-gV8"/>
+                    <connections>
+                        <outlet property="trackImage" destination="m0N-x2-4b2" id="k0e-Ez-sn3"/>
+                        <outlet property="trackLabel" destination="kWq-AA-jYi" id="nNe-PM-b3n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbi-dM-Le6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1266" y="135"/>
+            <point key="canvasLocation" x="1238" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2i0-Hc-cgG">

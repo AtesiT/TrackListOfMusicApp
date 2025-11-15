@@ -10,9 +10,8 @@ final class TrackListViewController: UITableViewController {
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indexPath = tableView.indexPathForSelectedRow else {return}
         let viewController = segue.destination as? TrackDetailsViewController
-        viewController?.track = trackList[indexPath.row]
+        viewController?.track = sender as? Track
     }
     
 }
@@ -36,4 +35,11 @@ extension TrackListViewController {
     }
 }
 
-
+// MARK: - UITableViewDelegate
+extension TrackListViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.description)    // Output
+        let track = trackList[indexPath.row]
+        performSegue(withIdentifier: "showDetails", sender: track)
+    }
+}
